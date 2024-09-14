@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import cz.antoninmarek.nbaplayers.domain.model.Player
+
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 
@@ -65,7 +66,10 @@ fun PlayerListScreen(
                 .background(Color(0xFF121212))
                 .padding(innerPadding)
         ) {
-            LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier.fillMaxSize()
+            ) {
                 items(players) { player ->
                     PlayerItem(player = player, onClick = { onPlayerClick(player.id) })
                 }
@@ -104,7 +108,7 @@ fun PlayerItem(player: Player, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .padding(vertical = 4.dp)
             .clip(RoundedCornerShape(8.dp))
             .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(containerColor = Color(0xFF1E1E1E))
@@ -112,7 +116,7 @@ fun PlayerItem(player: Player, onClick: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp),
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(

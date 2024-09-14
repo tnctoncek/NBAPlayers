@@ -17,8 +17,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import cz.antoninmarek.nbaplayers.domain.model.Player
 import cz.antoninmarek.nbaplayers.presentation.R
 import cz.antoninmarek.nbaplayers.presentation.ui.PlayerImage
@@ -112,6 +115,20 @@ fun PlayerHeader(player: Player, imageUrl: String?) {
             .fillMaxWidth()
             .height(240.dp)
     ) {
+
+        Column(
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(16.dp)
+        ) {
+            Text(
+                text = player.jerseyNumber.toString(),
+                fontSize = 88.sp,
+                fontWeight = FontWeight.Thin,
+                color = Color.DarkGray.copy(alpha = 0.5f),
+            )
+        }
+
         PlayerImage(
             model = imageUrl ?: R.mipmap.default_player_image,
             contentDescription = "Player Image",
@@ -134,7 +151,7 @@ fun PlayerHeader(player: Player, imageUrl: String?) {
         Column(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(8.dp)
+                .padding(16.dp)
         ) {
             Text(
                 text = player.firstName,
